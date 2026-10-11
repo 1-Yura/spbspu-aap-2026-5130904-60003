@@ -2,8 +2,7 @@
 
 namespace ognovenko
 {
-  void updateEqlSeq(const int value, const int prev, const int seen,
-                    int &run_len, int &max_len)
+  void updateEqlSeq(const int value, const int prev, const int seen, int &run_len, int &max_len)
   {
     if (seen == 0 || value != prev)
     {
@@ -20,8 +19,7 @@ namespace ognovenko
     }
   }
 
-  void updateLocMin(const int value, const int prev, const int before_prev,
-                    const int seen, int &min_count)
+  void updateLocMin(const int value, const int prev, const int before_prev, const int seen, int &min_count)
   {
     if (seen >= 2 && prev < before_prev && prev < value)
     {
