@@ -23,7 +23,7 @@ int main()
       break;
     }
 
-    if (count = 0)
+    if (count == 0)
     {
       max = elem;
     }
@@ -33,7 +33,7 @@ int main()
       sub_max_is_done = true;
       max = elem;
     }
-    else if (elem < max && (elem > sub_max || !sub_max_is_done)
+    else if (elem < max && (elem > sub_max || !sub_max_is_done))
     {
       sub_max = elem;
       sub_max_is_done = true;
@@ -46,7 +46,6 @@ int main()
     else if (elem <= prev)
     {
       cur_len++;
-      std::cout << elem << " " << prev << '\n';
     }
     else
     {
