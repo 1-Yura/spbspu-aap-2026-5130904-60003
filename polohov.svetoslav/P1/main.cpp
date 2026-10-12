@@ -67,5 +67,5 @@ int lengthOfSeq()
 
 int main()
 {
-  return lengthOfSeq();
+  lengthOfSeq();
 }
