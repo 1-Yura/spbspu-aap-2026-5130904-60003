@@ -1,12 +1,11 @@
 #include <iostream>
-#include <limits>
 
 int main()
 {
   int count = 0;
   int elem = 0;
-  int max = std::numeric_limits< int >::min();
-  int sub_max = std::numeric_limits< int >::min();
+  int max = 0;
+  int sub_max = 0;
   bool sub_max_is_done = false;
   int prev = 0;
   int cur_len = 0;
@@ -24,16 +23,17 @@ int main()
       break;
     }
 
-    if (elem > max)
+    if (count = 0)
     {
-      if (max != std::numeric_limits< int >::min())
-      {
-        sub_max = max;
-        sub_max_is_done = true;
-      }
       max = elem;
     }
-    else if (elem < max && elem > sub_max)
+    if (elem > max)
+    {
+      sub_max = max;
+      sub_max_is_done = true;
+      max = elem;
+    }
+    else if (elem < max && (elem > sub_max || !sub_max_is_done)
     {
       sub_max = elem;
       sub_max_is_done = true;
