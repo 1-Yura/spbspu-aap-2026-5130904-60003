@@ -1,3 +1,6 @@
 #include <iostream>
 
-int main() { std::cout << "babushkina.polina\n"; }
+int main()
+{
+  std::cout << "babushkina.polina\n";
+}
