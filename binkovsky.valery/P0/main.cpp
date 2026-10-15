@@ -2,14 +2,14 @@
 
 namespace binkovsky
 {
-int run()
-{
+  int run()
+  {
     std::cout << "binkovsky.valery" << '\n';
     return 0;
-}
+  }
 }
 
 int main()
 {
-    return binkovsky::run();
+  return binkovsky::run();
 }
