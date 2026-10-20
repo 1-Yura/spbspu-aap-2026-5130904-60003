@@ -8,13 +8,13 @@ int main()
   while (std::cin >> current)
   {
     if (current != 0) count++;
-    
+
     if (current > max)
     {
       max = current;
       max_position = count;
     }
-    
+
     if (previous)
     {
       if (pre_previous)
@@ -23,12 +23,12 @@ int main()
         if ((current == 0) && (previous < pre_previous)) local_min++;
       }
       else if (previous < current) local_min++;
-      
+
       pre_previous = previous;
     }
-    
+
     if (current == 0) break;
-    
+
     previous = current;
   }
 
