@@ -4,14 +4,14 @@
 #include <new>
 #include <string>
 
-void freeMatrix(int **matrix, long long rows)
+void freeMatrix(int **matrix, int rows)
 {
   if (matrix == nullptr)
   {
     return;
   }
 
-  for (long long i = 0; i < rows; ++i)
+  for (int i = 0; i < rows; ++i)
   {
     delete[] matrix[i];
   }
@@ -45,8 +45,8 @@ int main(int argc, char *argv[])
     return 2;
   }
 
-  long long rows = 0;
-  long long cols = 0;
+  int rows = 0;
+  int cols = 0;
 
   if (!(input >> rows >> cols))
   {
@@ -64,21 +64,7 @@ int main(int argc, char *argv[])
   int fixed[max_size] = {};
   int *fixed_rows[max_size] = {};
 
-  if (num == 1 && rows > max_size)
-  {
-    std::cerr << "Error: matrix exceeds fixed array capacity\n";
-    return 2;
-  }
-
-  if (rows != 0 && cols > LLONG_MAX / rows)
-  {
-    std::cerr << "Error: matrix dimensions are too large\n";
-    return 2;
-  }
-
-  const long long count = rows * cols;
-
-  if (num == 1 && count > max_size)
+  if (num == 1 && (rows > max_size || (rows > 0 && cols > max_size / rows)))
   {
     std::cerr << "Error: matrix exceeds fixed array capacity\n";
     return 2;
@@ -86,7 +72,7 @@ int main(int argc, char *argv[])
 
   if (num == 1 && rows > 0)
   {
-    for (long long i = 0; i < rows; ++i)
+    for (int i = 0; i < rows; ++i)
     {
       fixed_rows[i] = fixed + i * cols;
     }
@@ -104,12 +90,12 @@ int main(int argc, char *argv[])
     {
       matrix = new int *[rows];
 
-      for (long long i = 0; i < rows; ++i)
+      for (int i = 0; i < rows; ++i)
       {
         matrix[i] = nullptr;
       }
 
-      for (long long i = 0; i < rows; ++i)
+      for (int i = 0; i < rows; ++i)
       {
         matrix[i] = new int[cols];
       }
@@ -122,9 +108,9 @@ int main(int argc, char *argv[])
     }
   }
 
-  for (long long i = 0; i < rows; ++i)
+  for (int i = 0; i < rows; ++i)
   {
-    for (long long j = 0; j < cols; ++j)
+    for (int j = 0; j < cols; ++j)
     {
       if (!(input >> matrix[i][j]))
       {
@@ -205,15 +191,15 @@ int main(int argc, char *argv[])
   }
 
   long long min_sum = LLONG_MAX;
-  const long long diagonal_count = rows + cols - 1;
+  const int diagonal_count = rows + cols - 1;
 
-  for (long long d = 0; d < diagonal_count; ++d)
+  for (int d = 0; d < diagonal_count; ++d)
   {
     long long sum = 0;
 
-    for (long long i = 0; i < rows; ++i)
+    for (int i = 0; i < rows; ++i)
     {
-      const long long j = d - i;
+      const int j = d - i;
 
       if (j >= 0 && j < cols)
       {
