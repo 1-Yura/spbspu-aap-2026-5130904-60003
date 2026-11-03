@@ -14,7 +14,7 @@ void printMatrix(int* matrix, int rows, int cols)
   }
 }
 
-int minSumMdg(int* matrix, int rows, int cols)
+int minSumMdg(const int* matrix, int rows, int cols)
 {
   int min_sum = 0;
   for (int a = 0; a < rows + cols - 1; a++)
@@ -23,7 +23,7 @@ int minSumMdg(int* matrix, int rows, int cols)
 
     for (int i = 0; i < rows; i++)
     {
-      int j = a - i;
+      const int j = a - i;
 
       if ((j >= 0) && (j < cols))
       {
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
     return 1;
   }
 
-  char num = argv[1][0];
+  const char num = argv[1][0];
   if ((num != '1') && (num != '2'))
   {
     std::cerr << "Wrong num parameter\n";
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  int rows, cols;
+  int rows = 0, cols = 0;
   file >> rows >> cols;
 
   if (!file)
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
   }
   else
   {
-    int* matrix = new int[rows * cols];
+    int* const matrix = new int[rows * cols];
     for (int i = 0; i < rows * cols; i++)
     {
       if (!(file >> matrix[i]))
