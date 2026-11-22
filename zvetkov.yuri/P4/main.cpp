@@ -4,16 +4,16 @@
 
 namespace zvetkov
 {
-  char* Pwie()
+  char* pwie()
   {
     int pwie_size = 0;
     char* pwie = new char[1];
-    char symbol;
+    char symbol = '\0';
 
     while ((std::cin.get(symbol)) && (symbol != '\n'))
     {
       pwie_size++;
-      char* new_pwie = new char[pwie_size + 1];
+      char* const new_pwie = new char[pwie_size + 1];
 
       for (int i = 0; i < pwie_size - 1; i++)
       {
@@ -23,6 +23,12 @@ namespace zvetkov
       new_pwie[pwie_size - 1] = symbol;
       delete[] pwie;
       pwie = new_pwie;
+    }
+
+    if (pwie_size == 0)
+    {
+      delete[] pwie;
+      throw std::runtime_error("What? Cat got your tongue?");
     }
 
     pwie[pwie_size] = '\0';
@@ -68,18 +74,23 @@ int main()
 {
   try
   {
-    char* input_string = zvetkov::Pwie();
-    const char* template_string = "abs";
-    char* output_string = new char[std::strlen(input_string) + 1];
+    char* const input_string = zvetkov::pwie();
+    const char* const template_string = "abs";
+    char* const output_string = new char[std::strlen(input_string) + 1];
 
     zvetkov::replaceSymbol(input_string, output_string, 'c', 'b');
     std::cout << output_string << "\n";
 
-    int result = zvetkov::found(input_string, template_string);
+    const int result = zvetkov::found(input_string, template_string);
     std::cout << result << "\n";
 
     delete[] input_string;
     delete[] output_string;
+  }
+  catch (const std::runtime_error& e)
+  {
+    std::cerr << e.what() << "\n";
+    return 1;
   }
   catch (const std::bad_alloc&)
   {
